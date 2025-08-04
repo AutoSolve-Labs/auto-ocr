@@ -1,0 +1,30 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+.venv/
+env/
+venv/
+Lib/
+# Installer logs and metadata
+*.log
+*.lock
+*.egg-info/
+
+# PyInstaller build folders
+build/
+dist/
+*.spec
+
+# Watchdog cache or tag files
+*.TAG
+
+# VSCode/IDE folders
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db

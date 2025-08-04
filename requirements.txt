@@ -1,0 +1,4 @@
+watchdog 
+pytesseract 
+pillow 
+pyperclip
