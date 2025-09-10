@@ -53,7 +53,7 @@ Run the CLI to set up your preferred language and screenshot folder:
 python cli.py
 ```
 
-* It will ask which language you want to use (30+ supported).
+* It will ask which language you want to use (100+ supported).
 * It will ask for the screenshot folder path.
 
   * On **Windows 11**: Open File Explorer → `Pictures` → `Screenshots` → copy the folder path.
@@ -97,4 +97,12 @@ python windows_autostart.py
 2. Auto-OCR detects it instantly.
 3. Extracted text is available in your clipboard.
 4. Paste anywhere—ready to use.
+
+### Contributors
+
+* **Lakshay Jain**
+
+Special thanks to the [Tesseract OCR project](https://github.com/tesseract-ocr/tesseract) and its maintainers and contributors, this project wouldn’t be possible without their work.
+
+
 
