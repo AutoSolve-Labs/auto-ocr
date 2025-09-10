@@ -1,7 +1,5 @@
+# auto_ocr_dev.spec
 # -*- mode: python ; coding: utf-8 -*-
-
-import os
-from PyInstaller.utils.hooks import collect_data_files
 import os
 project_dir = os.getcwd()
 
@@ -22,7 +20,7 @@ a = Analysis(
     hooksconfig={},
     runtime_hooks=[],
     excludes=[],
-    noarchive=False,
+    noarchive=False,   # don’t archive, keeps unpacked pyc → faster
     optimize=0,
 )
 
@@ -35,16 +33,8 @@ exe = EXE(
     a.datas,
     [],
     name='auto_ocr',
-    debug=False,
-    bootloader_ignore_signals=False,
+    debug=True,                 # enables faster builds + debug info
     strip=False,
-    upx=True,
-    upx_exclude=[],
-    runtime_tmpdir=None,
-    console=False,  # True if you want to see logs in a terminal
-    disable_windowed_traceback=False,
-    argv_emulation=False,
-    target_arch=None,
-    codesign_identity=None,
-    entitlements_file=None,
+    upx=False,                  # disable compression → faster builds
+    console=False,               # see logs during testing
 )

@@ -2,7 +2,7 @@ from InquirerPy import inquirer
 from InquirerPy.base.control import Choice
 import os
 import json
-
+import shutil
 languages = {
     "Afrikaans": "afr",
     "Amharic": "amh",
@@ -332,7 +332,23 @@ def main():
         codes = [languages[lang] for lang in selected]
         if not codes:
             codes = ["eng"]
+        
+        project_dir = os.getcwd()
+        
+    for code in codes:
+        lang_file = f"{code}.traineddata"
+        src_traineddata = os.path.abspath(os.path.join(project_dir, "model_data", lang_file))
+        dst_tessdata_dir = os.path.abspath(os.path.join(project_dir, "tesseract_portable", "tessdata"))
+        dst_traineddata = os.path.join(dst_tessdata_dir, lang_file)
 
+        os.makedirs(dst_tessdata_dir, exist_ok=True)
+
+        if os.path.isfile(src_traineddata):
+            shutil.copy(src_traineddata, dst_traineddata)
+        else:
+            print(f"Missing file: {src_traineddata}")
+        
+        
         codes_str = "+".join(codes)
 
         config = {
