@@ -2,3 +2,4 @@ watchdog
 pytesseract 
 pillow 
 pyperclip
+InquirerPy

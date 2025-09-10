@@ -1,32 +1,44 @@
 import time
-import os
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from PIL import Image
 import pytesseract
 import pyperclip
+import sys, os
+import json
 
-# FIX: Point to Tesseract manually
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+if getattr(sys, 'frozen', False):  
+    base_path = sys._MEIPASS
+    config_path = os.path.join(base_path, 'config.json')
+else:
+    config_path = os.path.join(os.getcwd(), 'config.json')
 
-SCREENSHOT_DIR = r'C:\Users\laksh\Pictures\Screenshots'
+with open(config_path) as f:
+    config = json.load(f)
+
+
+if getattr(sys, 'frozen', False):  
+    base_path = sys._MEIPASS  
+    pytesseract.pytesseract.tesseract_cmd = os.path.join(base_path, 'tesseract_portable', 'tesseract.exe')
+else:
+    pytesseract.pytesseract.tesseract_cmd = r"C:\path\to\tesseract_portable\tesseract.exe"
+
+
+SCREENSHOT_DIR = config["SCREENSHOT_DIR"]
+lang = config["lang"]
 
 class ScreenshotHandler(FileSystemEventHandler):
     def on_created(self, event):
-        if event.src_path.endswith((".png", ".jpg", ".jpeg")):
-            print(f"New screenshot: {event.src_path}")
-            time.sleep(1)  # Let file save completely
+        if event.src_path.lower().endswith((".png", ".jpg", ".jpeg")):
+            print(f"New screenshot detected: {event.src_path}")
+            time.sleep(1)
             try:
-                text = pytesseract.image_to_string(Image.open(event.src_path),lang='eng+hin')
-                print("Extracted text:\n", text.strip())
+                text = pytesseract.image_to_string(Image.open(event.src_path), lang)
                 pyperclip.copy(text)
-                print("Text copied to clipboard!")
             except Exception as e:
-                print("Error processing image:", e)
+                print("Error while processing the screenshot:", e)
 
 if __name__ == "__main__":
-    print("Watching for screenshots in:", SCREENSHOT_DIR)
-    print("Tesseract version:", pytesseract.get_tesseract_version())
     event_handler = ScreenshotHandler()
     observer = Observer()
     observer.schedule(event_handler, path=SCREENSHOT_DIR, recursive=False)
