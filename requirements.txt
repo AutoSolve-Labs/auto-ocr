@@ -3,3 +3,4 @@ pytesseract
 pillow 
 pyperclip
 InquirerPy
+pyinstaller

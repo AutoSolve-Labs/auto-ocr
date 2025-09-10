@@ -16,7 +16,6 @@ Lib/
 # PyInstaller build folders
 build/
 dist/
-*.spec
 
 # Watchdog cache or tag files
 *.TAG
