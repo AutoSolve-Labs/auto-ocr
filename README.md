@@ -20,6 +20,12 @@ Extracting text from images often requires manually uploading screenshots to ext
 
 ## Installation & Setup
 
+### Step 0: Clone the repo
+```bash
+git clone https://github.com/AutoSolve-Labs/auto-ocr.git
+cd .\auto-ocr\
+```
+
 ### Step 1: Install Python
 
 If Python is not installed, download and install it from [python.org](https://www.python.org/downloads/).
