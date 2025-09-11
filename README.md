@@ -13,7 +13,7 @@ Extracting text from images often requires manually uploading screenshots to ext
 * **No extra downloads**: The OCR model is bundled with the `.exe` file.
 * **Auto-start**: Can be placed in `shell:startup` so it runs automatically when your computer boots.
 * **Screenshot detection**: Whenever you take a screenshot, Auto-OCR extracts the text and copies it to your clipboard.
-* **Multi-language support**: Supports 30+ languages.
+* **Multi-language support**: Supports 100+ languages.
 * **Fast**: Reduces OCR workflow from minutes to seconds.
 
 ---
